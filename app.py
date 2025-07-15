@@ -51,7 +51,7 @@ def track():
     return jsonify({
         "tracker": tracker_id,
         "title": title,
-        "subtitle": f"<b>Status:</b> {subtitle}",
+        "subtitle": subtitle,
         "history": history
     })
 

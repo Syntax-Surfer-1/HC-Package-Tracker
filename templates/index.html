@@ -10,6 +10,11 @@
       --bg-main: #f6dbba;
       --accent: #ff4f4f;
       --text: #1a1a1a;
+      --footer-bg: rgba(0, 0, 0, 0.05);
+      --input-bg: #fff;
+      --input-border: #ff4f4f;
+      --button-bg: #ff4f4f;
+      --button-hover-bg: #ff1e1e;
     }
 
     * {
@@ -27,6 +32,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      font-family: 'Fredoka', sans-serif;
     }
 
     a {
@@ -46,14 +52,13 @@
 
     .hero h1 {
       font-family: 'DynaPuff', sans-serif;
-      font-size: 3.5rem;
+      font-size: 3rem; /* Adjusted for mobile */
       color: var(--accent);
       margin-bottom: 1rem;
     }
 
     .hero p {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.2rem; /* Adjusted for mobile */
       margin-bottom: 2rem;
     }
 
@@ -61,6 +66,7 @@
       font-size: 2rem;
       margin-top: 2rem;
       animation: bounce 1.5s infinite;
+      cursor: pointer; /* Change cursor to pointer */
     }
 
     @keyframes bounce {
@@ -69,7 +75,7 @@
     }
 
     .track-section {
-      padding: 8rem 2rem 6rem;
+      padding: 4rem 2rem; /* Adjusted padding for mobile */
       text-align: center;
       font-size: 1.5rem;
       flex: 1;
@@ -83,7 +89,6 @@
     }
 
     .track-section p.source-text {
-      font-family: 'Fredoka', sans-serif;
       font-size: 1rem;
       margin-bottom: 2.5rem;
       color: #333;
@@ -93,16 +98,24 @@
       font-family: 'Fredoka', sans-serif;
       padding: 1rem;
       font-size: 1.2rem;
-      width: 340px;
-      border: 2px solid var(--accent);
+      width: 100%; /* Full width on mobile */
+      max-width: 340px; /* Max width for larger screens */
+      border: 2px solid var(--input-border);
       border-radius: 8px;
       margin-bottom: 1rem;
+      background: var(--input-bg);
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--accent);
     }
 
     button {
       font-family: 'Fredoka', sans-serif;
       padding: 1rem 2rem;
-      background: var(--accent);
+      background: var(--button-bg);
       color: white;
       border: none;
       border-radius: 8px;
@@ -114,7 +127,7 @@
     }
 
     button:hover {
-      background: #ff1e1e;
+      background: var(--button-hover-bg);
       transform: scale(1.05);
     }
 
@@ -139,8 +152,7 @@
       width: 100%;
       margin-top: 2rem;
       border-collapse: collapse;
-      font-size: 1.05rem;
-      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem; /* Adjusted for mobile */
       background-color: #fff;
       border-radius: 10px;
       overflow: hidden;
@@ -148,7 +160,7 @@
 
     th, td {
       border: 1px solid #e0c9a6;
-      padding: 14px 16px;
+      padding: 10px; /* Adjusted padding for mobile */
       text-align: left;
     }
 
@@ -163,13 +175,37 @@
 
     .footer {
       width: 100vw;
-      background: rgba(0,0,0,0.05);
+      background: var(--footer-bg);
       text-align: center;
-      font-family: 'Fredoka', sans-serif;
       font-size: 1rem;
       padding: 2rem 1rem;
       color: #333;
       margin-top: auto;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem; /* Smaller font size for mobile */
+      }
+
+      .hero p {
+        font-size: 1rem; /* Smaller font size for mobile */
+      }
+
+      .track-section h2 {
+        font-size: 1.8rem; /* Smaller font size for mobile */
+      }
+
+      .track-section p.source-text {
+        font-size: 0.9rem; /* Smaller font size for mobile */
+      }
+
+      button {
+        width: 100%; /* Full width button on mobile */
+        margin-left: 0; /* Remove left margin */
+        margin-top: 1rem; /* Add top margin */
+      }
     }
   </style>
 </head>
@@ -177,10 +213,10 @@
   <section class="hero">
     <h1>📦 Hack Club Letter Tracker</h1>
     <p>Track your <strong>Summer of Making</strong> package</p>
-    <div class="arrow">⬇️ Scroll Down</div>
+    <div class="arrow" onclick="scrollToSection()">⬇️ Scroll Down</div>
   </section>
 
-  <section class="track-section">
+  <section class="track-section" id="trackSection">
     <h2>Get your tracking ID from:</h2>
     <p class="source-text">
       <a href="https://summer.hackclub.com/shop/orders" target="_blank">
@@ -201,6 +237,11 @@
   </div>
 
   <script>
+    function scrollToSection() {
+      const trackSection = document.getElementById("trackSection");
+      trackSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
     async function track() {
       const id = document.getElementById("trackerInput").value.trim();
       const result = document.getElementById("result");
