@@ -77,9 +77,16 @@
 
     .track-section h2 {
       font-family: 'DynaPuff', sans-serif;
-      font-size: 2.2rem;
-      color: var(--accent);
-      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .track-section p.source-text {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      color: #333;
     }
 
     input {
@@ -155,8 +162,8 @@
     }
 
     .footer {
-      width: 100%;
-      background: rgba(0,0,0,0.08);
+      width: 100vw;
+      background: rgba(0,0,0,0.05);
       text-align: center;
       font-family: 'Fredoka', sans-serif;
       font-size: 1rem;
@@ -174,7 +181,12 @@
   </section>
 
   <section class="track-section">
-    <h2>Get your tracking ID at <a href="https://summer.hackclub.com/shop/orders" target="_blank">summer.hackclub.com/shop/orders</a></h2>
+    <h2>Get your tracking ID from:</h2>
+    <p class="source-text">
+      <a href="https://summer.hackclub.com/shop/orders" target="_blank">
+        https://summer.hackclub.com/shop/orders
+      </a>
+    </p>
     <div>
       <input type="text" id="trackerInput" placeholder="Enter tracker ID (e.g. ltr!abc123)" />
       <button onclick="track()">Track</button>
@@ -184,8 +196,8 @@
 
   <div class="footer">
     🔍 Data powered by <a href="https://mail.hackclub.com" target="_blank">mail.hackclub.com</a><br>
-    🛀 Built with ❤️ by Yax Patel<br>
-    📬 Track any Hack Club letter and view its journey.
+    Built with ❤️ by <a href="https://github.com/Syntax-Surfer-1" target="_blank">Syntax-Surfer-1</a><br>
+    📬 Get your tracker ID from <a href="https://summer.hackclub.com/shop/orders" target="_blank">summer.hackclub.com/shop/orders</a> & track your Hack Club letters here!
   </div>
 
   <script>
