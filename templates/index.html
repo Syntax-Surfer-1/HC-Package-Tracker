@@ -225,6 +225,7 @@
     </p>
     <div>
       <input type="text" id="trackerInput" placeholder="Enter tracker ID (e.g. ltr!abc123)" />
+      <button onclick="pasteFromClipboard()"><img src="static/paste.svg" alt="Paste" style="width: 20px; height: 20px;"></button>
       <button onclick="track()">Track</button>
     </div>
     <div id="result"></div>
@@ -290,6 +291,15 @@
         }
       } catch (err) {
         result.innerHTML = `<p style='color:red;'>❌ ${err.message}</p>`;
+      }
+    }
+
+    async function pasteFromClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("trackerInput").value = text;
+      } catch (err) {
+        console.error('Failed to read clipboard contents: ', err);
       }
     }
   </script>
