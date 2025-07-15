@@ -2,225 +2,212 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>📦 Hack Club Letter Tracker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Fredoka&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg1: #f6dbba;
-      --accent: #ec3750;
-      --white: #fff;
-      --text: #222;
+      --bg-main: #f6dbba;
+      --accent: #ff4f4f;
+      --text: #1a1a1a;
     }
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      font-family: 'Lexend', sans-serif;
-      background: var(--bg1);
+      background: var(--bg-main) url('/static/bg.svg') center/cover no-repeat fixed;
       color: var(--text);
-      background-image: url('bg.svg');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center;
-      background-size: cover;
+      overflow-x: hidden;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    section {
-      width: 100%;
-      padding: 40px 20px;
+    a {
+      color: var(--accent);
+      text-decoration: none;
     }
 
     .hero {
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(2px);
+      padding: 2rem;
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-family: 'DynaPuff', sans-serif;
+      font-size: 3.5rem;
       color: var(--accent);
-      margin: 0;
+      margin-bottom: 1rem;
     }
 
     .hero p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
     }
 
-    .scroll-down {
-      margin-top: 40px;
-      font-size: 1rem;
-      color: #555;
+    .hero .arrow {
+      font-size: 2rem;
+      margin-top: 2rem;
+      animation: bounce 1.5s infinite;
     }
 
-    .container {
-      max-width: 850px;
-      margin: 0 auto;
-      background: var(--white);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
 
-    h2 {
-      color: var(--accent);
-      margin-top: 0;
-    }
-
-    .info {
+    .track-section {
+      padding: 8rem 2rem 6rem;
       text-align: center;
-      margin-bottom: 20px;
+      font-size: 1.5rem;
+      flex: 1;
     }
 
-    .info a {
-      color: #007aff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .input-area {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
+    .track-section h2 {
+      font-family: 'DynaPuff', sans-serif;
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
     }
 
     input {
-      flex: 1 1 300px;
-      padding: 14px;
-      font-size: 16px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
+      font-family: 'Fredoka', sans-serif;
+      padding: 1rem;
+      font-size: 1.2rem;
+      width: 340px;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
 
     button {
+      font-family: 'Fredoka', sans-serif;
+      padding: 1rem 2rem;
       background: var(--accent);
-      color: var(--white);
+      color: white;
       border: none;
-      padding: 14px 20px;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 8px;
       cursor: pointer;
+      margin-left: 10px;
+      font-size: 1.2rem;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
     }
 
     button:hover {
-      background: #c72a40;
+      background: #ff1e1e;
+      transform: scale(1.05);
     }
 
     #result {
-      margin-top: 30px;
+      font-family: 'Fredoka', sans-serif;
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      background: #fffefc;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      text-align: left;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     table {
       width: 100%;
+      margin-top: 2rem;
       border-collapse: collapse;
-      margin-top: 20px;
+      font-size: 1.05rem;
+      font-family: 'Fredoka', sans-serif;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
     th, td {
+      border: 1px solid #e0c9a6;
+      padding: 14px 16px;
       text-align: left;
-      padding: 12px;
-      border-bottom: 1px solid #eee;
     }
 
     th {
-      background-color: #f5f5f5;
-      font-weight: 600;
+      background: #ffe6c7;
+      color: #333;
+    }
+
+    tr:nth-child(even) td {
+      background: #fef2e5;
     }
 
     .footer {
-      margin-top: 40px;
+      width: 100%;
+      background: rgba(0,0,0,0.08);
       text-align: center;
-      font-size: 14px;
-      color: #666;
-    }
-
-    .error {
-      background: #ffe0e0;
-      color: #b00020;
-      padding: 12px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      input, button {
-        width: 100%;
-      }
-
-      .input-area {
-        flex-direction: column;
-      }
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      padding: 2rem 1rem;
+      color: #333;
+      margin-top: auto;
     }
   </style>
 </head>
 <body>
-
-  <!-- Section 1: Hero / Landing -->
   <section class="hero">
     <h1>📦 Hack Club Letter Tracker</h1>
-    <p>Track your free sticker packages from Hack Club's Summer of Making!</p>
-    <div class="scroll-down">
-      ↓ Scroll down to track your package ↓
-    </div>
+    <p>Track your <strong>Summer of Making</strong> package</p>
+    <div class="arrow">⬇️ Scroll Down</div>
   </section>
 
-  <!-- Section 2: Tracker -->
-  <section>
-    <div class="container">
-      <h2>Track Your Letter</h2>
-      <p class="info">
-        Get your tracking ID from 👉 <a href="https://summer.hackclub.com/shop/orders" target="_blank">summer.hackclub.com/shop/orders</a>
-      </p>
-
-      <div class="input-area">
-        <input id="trackerInput" placeholder="Enter your tracker ID (e.g. ltr!wm3hvwxk)" />
-        <button onclick="track()">Track</button>
-      </div>
-
-      <div id="result"></div>
-
-      <div class="footer">
-        📬 Data provided by <a href="https://mail.hackclub.com/" target="_blank">mail.hackclub.com</a>
-      </div>
+  <section class="track-section">
+    <h2>Get your tracking ID at <a href="https://summer.hackclub.com/shop/orders" target="_blank">summer.hackclub.com/shop/orders</a></h2>
+    <div>
+      <input type="text" id="trackerInput" placeholder="Enter tracker ID (e.g. ltr!abc123)" />
+      <button onclick="track()">Track</button>
     </div>
+    <div id="result"></div>
   </section>
+
+  <div class="footer">
+    🔍 Data powered by <a href="https://mail.hackclub.com" target="_blank">mail.hackclub.com</a><br>
+    🛀 Built with ❤️ by Yax Patel<br>
+    📬 Track any Hack Club letter and view its journey.
+  </div>
 
   <script>
     async function track() {
       const id = document.getElementById("trackerInput").value.trim();
       const result = document.getElementById("result");
 
-      if (!id) {
-        result.innerHTML = '<div class="error">Please enter a tracking ID.</div>';
-        return;
-      }
+      if (!id) return result.innerHTML = "<p>Please enter a tracker ID.</p>";
 
-      result.innerHTML = "🔍 Tracking...";
+      result.innerHTML = "<p>Loading...</p>";
 
       try {
         const res = await fetch("/track", {
           method: "POST",
           body: new URLSearchParams({ tracker_id: id })
         });
-
         const data = await res.json();
 
         if (data.error) {
-          result.innerHTML = `<div class="error">❌ ${data.error}</div>`;
+          result.innerHTML = `<p style='color:red;'>❌ ${data.error}</p>`;
         } else {
-          const tableRows = data.history.map(entry => `
+          const rows = data.history.map(entry => `
             <tr>
               <td>${entry.time}</td>
               <td>${entry.description}</td>
@@ -232,8 +219,8 @@
           `).join("");
 
           result.innerHTML = `
-            <h3>${data.title}</h3>
-            <p><strong>Status:</strong> ${data.subtitle}</p>
+            <h3 style="font-family: 'DynaPuff', sans-serif; font-size: 1.8rem;">${data.title}</h3>
+            <p style="font-family: 'Fredoka', sans-serif; font-size: 1.1rem;"><strong>Status:</strong> ${data.subtitle}</p>
             <table>
               <thead>
                 <tr>
@@ -245,15 +232,13 @@
                   <th>Extra Info</th>
                 </tr>
               </thead>
-              <tbody>${tableRows}</tbody>
-            </table>
-          `;
+              <tbody>${rows}</tbody>
+            </table>`;
         }
       } catch (err) {
-        result.innerHTML = `<div class="error">❌ ${err.message}</div>`;
+        result.innerHTML = `<p style='color:red;'>❌ ${err.message}</p>`;
       }
     }
   </script>
-
 </body>
 </html>
